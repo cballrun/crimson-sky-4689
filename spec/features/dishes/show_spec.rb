@@ -45,7 +45,7 @@ RSpec.describe 'the dish show page' do
 
   it 'shows the dishes chef name' do
     visit "/dishes/#{@cheeseburger.id}"
-    within("#chef") do
+    within("#chef_name") do
       expect(page).to have_content("Chef: Randy Bobandy")
     end
   end

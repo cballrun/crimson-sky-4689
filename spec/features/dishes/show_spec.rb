@@ -20,8 +20,8 @@ RSpec.describe 'the dish show page' do
     @glass = Ingredient.create!(name: "Glass", calories: 300)
     @trailer = Ingredient.create!(name: "Trailer", calories: 400)
 
-    @burger_cheese = DishIngredients.create!(dish_id: @cheeseburger.id, ingredient_id: @cheese.id)
-    @burger_liquor = DishIngredients.create!(dish_id: @cheeseburger.id, ingredient_id: @liquor.id)
+    @burger_cheese = DishIngredient.create!(dish_id: @cheeseburger.id, ingredient_id: @cheese.id)
+    @burger_liquor = DishIngredient.create!(dish_id: @cheeseburger.id, ingredient_id: @liquor.id)
   end
 
   it 'exists' do
@@ -30,9 +30,17 @@ RSpec.describe 'the dish show page' do
 
   it 'shows the dishes name and description' do
     visit "/dishes/#{@cheeseburger.id}"
-
+    
     expect(page).to have_content("Dish Name: Cheeseburger")
     expect(page).to have_content("Dish Description: Randy's Cheeseburger")
+  end
+
+  it 'shows the dishes ingredients' do
+    visit "/dishes/#{@cheeseburger.id}"
+    within("#ingredients") do
+      expect(page).to have_content("Cheese")
+      expect(page).to have_content("Liquor")
+    end
   end
 
 

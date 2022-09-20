@@ -25,18 +25,18 @@ RSpec.describe 'the dish show page' do
   end
 
   it 'exists' do
-    visit "/dishes/#{@cheeseburger.id}"
+    visit dish_path(@cheeseburger)
   end
 
   it 'shows the dishes name and description' do
-    visit "/dishes/#{@cheeseburger.id}"
+    visit dish_path(@cheeseburger)
     
     expect(page).to have_content("Dish Name: Cheeseburger")
     expect(page).to have_content("Dish Description: Randy's Cheeseburger")
   end
 
   it 'shows the dishes ingredients' do
-    visit "/dishes/#{@cheeseburger.id}"
+    visit dish_path(@cheeseburger)
     within("#ingredients") do
       expect(page).to have_content("Cheese")
       expect(page).to have_content("Liquor")
@@ -44,14 +44,14 @@ RSpec.describe 'the dish show page' do
   end
 
   it 'shows the dishes chef name' do
-    visit "/dishes/#{@cheeseburger.id}"
+    visit dish_path(@cheeseburger)
     within("#chef_name") do
       expect(page).to have_content("Chef: Randy Bobandy")
     end
   end
 
   it 'shows a calorie count for the dish' do
-    visit "/dishes/#{@cheeseburger.id}"
+    visit dish_path(@cheeseburger)
     within("#calorie_count") do
       expect(page).to have_content("Calories: 300")
     end

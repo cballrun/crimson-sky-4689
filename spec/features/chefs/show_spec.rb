@@ -31,7 +31,7 @@ RSpec.describe 'the chef show page' do
     expect(page).to have_content("Chef Name: Ricky LaFleur")
   end
 
-  xit 'links to the chef ingredients index' do
+  it 'links to the chef ingredients index' do
     visit chef_path(@c3)
     click_link("View Chef Ingredients")
     expect(current_path).to eq(chef_ingredients_path(@c3))

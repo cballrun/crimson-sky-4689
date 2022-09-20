@@ -10,7 +10,7 @@ RSpec.describe Chef, type: :model do
     it {should have_many(:ingredients).through(:chef_ingredients)}
   end
 
-  xt 'can tell which ingredients are in its dishes' do
+  xit 'can tell which ingredients are in its dishes' do
     @c1 = Chef.create!(name: "Randy Bobandy")
     @c2 = Chef.create!(name: "Jim Lahey")
     @c3 = Chef.create!(name: "Ricky LaFleur")

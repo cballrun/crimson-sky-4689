@@ -1,16 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Chef, type: :model do
-  describe "validations" do
-    it {should validate_presence_of :name}
-  end
-  
-  describe "relationships" do
-    it {should have_many :dishes}
-    it {should have_many(:ingredients).through(:chef_ingredients)}
-  end
-
-  xt 'can tell which ingredients are in its dishes' do
+RSpec.describe 'the ingredients index page' do
+  before :each do
     @c1 = Chef.create!(name: "Randy Bobandy")
     @c2 = Chef.create!(name: "Jim Lahey")
     @c3 = Chef.create!(name: "Ricky LaFleur")
@@ -28,9 +19,15 @@ RSpec.describe Chef, type: :model do
 
     # @stick_glass = DishIngredient.create!(dish_id: @stick.id, ingredient_id: @glass.id)
     @stick_trailer = DishIngredient.create!(dish_id: @stick.id, ingredient_id: @trailer.id)
+
   
-    expect(@c3.ingredients).to eq([@goldfish, @liquor, @trailer])
   end
 
+  it 'shows all of a chefs ingredients' do
+    visit chef_ingredients_path(@c3)
+    save_and_open_page
+    expect(page).to have_content(@goldfish.name)
+    expect(page).to_not have_content(@glass.name)
+  end
 
 end

@@ -4,4 +4,10 @@ class Chef < ApplicationRecord
   has_many :chef_ingredients
   has_many :ingredients, through: :chef_ingredients
 
+  # def ingredients
+  #   ingredients.joins(:dishes)
+  #   .where(:chef_id == self.id)
+  #   .distinct
+  # end
+
 end

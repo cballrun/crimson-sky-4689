@@ -1,9 +1,9 @@
 class IngredientsController < ApplicationController
 
   def index
-    # @dish = Dish.find(params[:id])
-    # @ingredients = @dish.ingredients
-    # @chef = @dish.chef
+    @chef = Chef.find(params[:chef_id])
+
+    @ingredients = @chef.ingredients
   end
 
 end
